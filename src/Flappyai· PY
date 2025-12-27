@@ -1,0 +1,160 @@
+"""
+Flappy Bird AI - BARE BONES Version
+Just the essential parts to understand neural networks
+"""
+
+import pygame
+from pygame.locals import *
+import random
+import numpy as np
+
+pygame.init()
+
+# Basic setup
+screen = pygame.display.set_mode((864, 936))
+clock = pygame.time.Clock()
+
+# Load images
+bg = pygame.image.load('img/bg.png')
+ground_img = pygame.image.load('img/ground.png')
+
+# Same Bird and Pipe classes from tutorial 6
+class Bird(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.images = []
+        for num in range(1, 4):
+            img = pygame.image.load(f"img/bird{num}.png")
+            self.images.append(img)
+        self.image = self.images[0]
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]
+        self.vel = 0
+
+    def update(self):
+        self.vel += 0.5
+        if self.vel > 8:
+            self.vel = 8
+        self.rect.y += int(self.vel)
+
+    def jump(self):
+        self.vel = -10
+
+
+class Pipe(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("img/pipe.png")
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x, y + 75]  # Bottom pipe
+
+    def update(self):
+        self.rect.x -= 4
+
+
+# ============================================
+# NEURAL NETWORK - Build this yourself!
+# ============================================
+
+class NeuralNetwork:
+    """
+    TODO: You need to implement this!
+    
+    A neural network is just:
+    1. Inputs (what the bird sees)
+    2. Weights (numbers that get multiplied)
+    3. Output (jump or not)
+    
+    Formula: output = inputs * weights
+    """
+    
+    def __init__(self):
+        # TODO: Create random weights
+        # Hint: You need 3 weights (one for each input)
+        pass
+    
+    def predict(self, bird_y, bird_vel, pipe_x):
+        """
+        TODO: Implement the prediction
+        
+        Steps:
+        1. Multiply each input by its weight
+        2. Add them up
+        3. If result > 0, return True (jump)
+        
+        Args:
+            bird_y: How high is the bird?
+            bird_vel: How fast is it falling?
+            pipe_x: How far to next pipe?
+        
+        Returns:
+            True if should jump, False otherwise
+        """
+        pass
+
+
+# ============================================
+# Main game loop
+# ============================================
+
+bird = Bird(100, 400)
+pipes = pygame.sprite.Group()
+score = 0
+
+# Create your neural network here
+# brain = NeuralNetwork()
+
+running = True
+while running:
+    clock.tick(60)
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    # Update
+    bird.update()
+    pipes.update()
+    
+    # Add pipes every 90 frames
+    if pygame.time.get_ticks() % 90 == 0:
+        pipes.add(Pipe(864, random.randint(200, 500)))
+    
+    # TODO: Use your neural network to decide
+    # if brain.predict(bird.rect.y, bird.vel, ???):
+    #     bird.jump()
+    
+    # Draw
+    screen.blit(bg, (0, 0))
+    pipes.draw(screen)
+    screen.blit(bird.image, bird.rect)
+    screen.blit(ground_img, (0, 768))
+    
+    pygame.display.update()
+
+pygame.quit()
+
+
+# ============================================
+# YOUR TASKS:
+# ============================================
+"""
+1. Fill in NeuralNetwork.__init__()
+   - Create 3 random weights using np.random.randn()
+
+2. Fill in NeuralNetwork.predict()
+   - Multiply inputs by weights
+   - Add them together
+   - Return True if sum > 0
+
+3. Use the neural network in the game loop
+   - Get the next pipe's x position
+   - Call brain.predict()
+   - Make the bird jump if it returns True
+
+4. Test it!
+   - It will play randomly (bad weights)
+   - That's okay! You understand the basics now.
+
+NEXT STEP: Learn how to make the weights BETTER (training)
+"""

@@ -32,7 +32,7 @@ pass_pipe = False
 
 
 #load images
-bg = pygame.image.load('img/bg.png')
+bg = pygame.image.load('C:\Users\ragha\Downloads\My git folder 2\flappy-trainer\src\img\bg.png')
 ground_img = pygame.image.load('img/ground.png')
 button_img = pygame.image.load('img/restart.png')
 
