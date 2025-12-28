@@ -22,10 +22,10 @@ This Flappy Bird project demonstrates these concepts in an easy-to-understand en
 
 ## Impact & Achievements
 
-- **580% performance improvement:** Optimized from score 56 → 342 through systematic parameter tuning
-- **Reduced training stagnation by 58%:** Lowered max_stagnation from 25 → 12 generations
-- **Implemented multi-species evolution:** 5-species diversity system increased learning efficiency 3x
-- **Efficient training pipeline:** 100 birds × 50 generations = 5000 evaluations in 8 minutes
+- **341% performance improvement:** Optimized from initial score of 34 → 150 through iterative parameter tuning
+- **Stable learning curve:** Maintained consistent average fitness growth from 6.5 to 15+ across 30 generations
+- **Efficient training pipeline:** 100 birds per generation learning in real-time
+- **Automated visualization:** Built-in graph generation and performance tracking system
 
 ---
 
@@ -224,29 +224,33 @@ Bias Mutation Rate: 0.7
 
 ## Results
 
+### Training Progress
+![Training Progress](docs/graph.png)
+
 ### Best Performance
 
-**Generation 18: Score 342**
-- 34+ pipes successfully cleared
-- Network complexity: (4 nodes, 7 connections)
-- Species diversity: Started with 5, ended with 2
+**Generation 11: Score 150**
+- 15 pipes successfully cleared
+- Achieved through systematic hyperparameter optimization
+- Network evolved from simple 3-input structure to optimized decision-making system
 
 ### Learning Progression
 
 ```
-Generation 0:   Average score: 7.7   | Best: 56
-Generation 5:   Average score: 12.7  | Best: 130
-Generation 10:  Average score: 18.4  | Best: 170
-Generation 18:  Average score: 39.3  | Best: 342 ← Peak
-Generation 25+: Stagnation phase (score ~75-150)
+Generation 0:   Best: 34    | Average: 6.5
+Generation 5:   Best: 92    | Average: 10
+Generation 10:  Best: 131   | Average: 14
+Generation 11:  Best: 150   | Average: 13 ← Peak
+Generation 20:  Best: 112   | Average: 14
+Generation 30:  Best: 111   | Average: 15
 ```
 
 ### Key Observations
 
-1. **Rapid Initial Learning:** Major improvements in first 20 generations
-2. **Species Matter:** Runs with 5 species outperformed single-species runs
-3. **Simplicity Works:** Best network had only 4 neurons, 7 connections
-4. **Diminishing Returns:** After generation 20, improvements slowed significantly
+1. **Rapid Initial Learning:** Major improvements in first 11 generations
+2. **Peak Performance:** Best score of 150 achieved at generation 11
+3. **Consistent Average Improvement:** Average fitness steadily increased from 6.5 to 15+
+4. **Exploration vs Exploitation:** Performance fluctuates as algorithm balances trying new strategies vs refining existing ones
 
 ---
 
