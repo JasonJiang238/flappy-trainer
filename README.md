@@ -225,7 +225,8 @@ Bias Mutation Rate: 0.7
 ## Results
 
 ### Training Progress
-![Training Progress](docs/graph.png)
+<img width="2400" height="1000" alt="graph" src="https://github.com/user-attachments/assets/293b9b4b-c252-4037-83b1-508d9212cba4" />
+
 
 ### Best Performance
 
